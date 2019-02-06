@@ -47,6 +47,15 @@ UserSchema.methods = {
                 return token;
             });
     },
+    removeToken: function(token) {
+        const user = this;
+        return user
+            .update({
+                $pull: {
+                    tokens: { token }
+                }
+            });
+    },
     toJSON: function() {
         const user = this;
         const userObject = user.toObject();
